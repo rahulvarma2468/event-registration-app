@@ -3,26 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <title>Admin Panel</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f4f7fa;
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    ul {
+      list-style: none;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    li {
+      background: white;
+      padding: 15px 20px;
+      margin: 10px 0;
+      border-left: 5px solid #007bff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Registered Users</h2>
-  <ul id="userList"></ul>
 
-  <script>
-    fetch('http://localhost:5000/users')
-      .then(response => response.json())
-      .then(users => {
-        const userList = document.getElementById('userList');
-        users.forEach(user => {
-          const li = document.createElement('li');
-          li.textContent = `${user.name} (${user.email}) - Scanned: ${user.scanned ? 'Yes' : 'No'}`;
-          userList.appendChild(li);
-        });
-      })
-      .catch(err => {
-        console.error("Error fetching users:", err);
-        alert("Could not load user list");
+<h2>Registered Users</h2>
+<ul id="userList"></ul>
+
+<script>
+  fetch('http://localhost:5000/users')
+    .then(response => response.json())
+    .then(users => {
+      const userList = document.getElementById('userList');
+      users.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = `${user.name} (${user.email}) - Scanned: ${user.scanned ? 'Yes' : 'No'}`;
+        userList.appendChild(li);
       });
-  </script>
+    })
+    .catch(err => {
+      console.error("Error fetching users:", err);
+      alert("Could not load user list");
+    });
+</script>
 </body>
 </html>
