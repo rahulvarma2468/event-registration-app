@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel</title>
+</head>
+<body>
+  <h2>Registered Users</h2>
+  <ul id="userList"></ul>
+
+  <script>
+    fetch('http://localhost:5000/users')
+      .then(response => response.json())
+      .then(users => {
+        const userList = document.getElementById('userList');
+        users.forEach(user => {
+          const li = document.createElement('li');
+          li.textContent = `${user.name} (${user.email}) - Scanned: ${user.scanned ? 'Yes' : 'No'}`;
+          userList.appendChild(li);
+        });
+      })
+      .catch(err => {
+        console.error("Error fetching users:", err);
+        alert("Could not load user list");
+      });
+  </script>
+</body>
+</html>
