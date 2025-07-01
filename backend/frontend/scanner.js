@@ -6,6 +6,7 @@ const result = document.getElementById('result');
 const codeReader = new ZXing.BrowserQRCodeReader();
 console.log('ZXing library loaded.');
 
+
 // Start scanning
 codeReader.getVideoInputDevices()
   .then((videoInputDevices) => {
