@@ -8,6 +8,8 @@ const QRCode = require('qrcode');
 
 const app = express();
 
+const { sendQRCodeEmail } = require('./utils/mailer');
+
 // Middleware
 app.use(express.json());
 app.use(express.static('frontend'));
@@ -56,7 +58,10 @@ app.post('/register', async (req, res) => {
   await newUser.save();
 
   // ✅ Add the sendQRCodeEmail call right here:
-  await sendQRCodeEmail(email, qrDataUrl);
+async function sendQRCodeEmail(email, qrDataUrl) {
+  // Your logic to send email with QR code goes here
+  console.log(`Sending QR code email to ${email}`);
+}
 
   res.json({ success: true, qrCode: qrDataUrl });
 });
